@@ -1,0 +1,62 @@
+2026-05-28 23:19:33,713 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.9:5000
+2026-05-28 23:19:33,735 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-05-28 23:19:49,577 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:19:49] "GET / HTTP/1.1" 200 -
+2026-05-28 23:19:50,456 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:19:50] "GET /static/js/main.js HTTP/1.1" 200 -
+2026-05-28 23:19:50,470 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:19:50] "GET /static/css/main.css HTTP/1.1" 200 -
+2026-05-28 23:19:50,719 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:19:50] "GET /api/ml/algorithms HTTP/1.1" 200 -
+2026-05-28 23:19:50,719 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:19:50] "GET /api/history/ HTTP/1.1" 200 -
+2026-05-28 23:19:53,151 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:19:53] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-05-28 23:20:10,131 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:20:10] "GET / HTTP/1.1" 200 -
+2026-05-28 23:20:10,413 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:20:10] "GET /static/css/main.css HTTP/1.1" 200 -
+2026-05-28 23:20:10,439 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:20:10] "GET /static/js/main.js HTTP/1.1" 200 -
+2026-05-28 23:20:12,037 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:20:12] "GET /api/history/ HTTP/1.1" 200 -
+2026-05-28 23:20:12,109 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:20:12] "GET /api/ml/algorithms HTTP/1.1" 200 -
+2026-05-28 23:20:12,492 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:20:12] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-05-28 23:20:43,600 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:20:43] "GET /api/history/ HTTP/1.1" 200 -
+2026-05-28 23:21:05,095 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:21:05] "POST /api/ml/detect HTTP/1.1" 200 -
+2026-05-28 23:21:12,255 [ERROR] backend.routes.ml_routes: Error running ML algorithm
+Traceback (most recent call last):
+  File "c:\Users\Usuario\Downloads\mlsolver\mlsolver\backend\routes\ml_routes.py", line 33, in run_ml
+    task = request.form.get('task') or (request.json or {}).get('task', 'classification')
+                                        ^^^^^^^^^^^^
+  File "C:\Users\Usuario\Downloads\mlsolver\venv\Lib\site-packages\werkzeug\wrappers\request.py", line 560, in json
+    return self.get_json()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Downloads\mlsolver\venv\Lib\site-packages\werkzeug\wrappers\request.py", line 604, in get_json
+    return self.on_json_loading_failed(None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Downloads\mlsolver\venv\Lib\site-packages\flask\wrappers.py", line 214, in on_json_loading_failed
+    return super().on_json_loading_failed(e)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Downloads\mlsolver\venv\Lib\site-packages\werkzeug\wrappers\request.py", line 647, in on_json_loading_failed
+    raise UnsupportedMediaType(
+werkzeug.exceptions.UnsupportedMediaType: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'.
+2026-05-28 23:21:12,261 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:21:12] "[35m[1mPOST /api/ml/run HTTP/1.1[0m" 500 -
+2026-05-28 23:21:27,832 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:21:27] "POST /api/ml/detect HTTP/1.1" 200 -
+2026-05-28 23:21:34,588 [ERROR] backend.routes.ml_routes: Error running ML algorithm
+Traceback (most recent call last):
+  File "c:\Users\Usuario\Downloads\mlsolver\mlsolver\backend\routes\ml_routes.py", line 33, in run_ml
+    task = request.form.get('task') or (request.json or {}).get('task', 'classification')
+                                        ^^^^^^^^^^^^
+  File "C:\Users\Usuario\Downloads\mlsolver\venv\Lib\site-packages\werkzeug\wrappers\request.py", line 560, in json
+    return self.get_json()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Downloads\mlsolver\venv\Lib\site-packages\werkzeug\wrappers\request.py", line 604, in get_json
+    return self.on_json_loading_failed(None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Downloads\mlsolver\venv\Lib\site-packages\flask\wrappers.py", line 214, in on_json_loading_failed
+    return super().on_json_loading_failed(e)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Downloads\mlsolver\venv\Lib\site-packages\werkzeug\wrappers\request.py", line 647, in on_json_loading_failed
+    raise UnsupportedMediaType(
+werkzeug.exceptions.UnsupportedMediaType: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'.
+2026-05-28 23:21:34,605 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:21:34] "[35m[1mPOST /api/ml/run HTTP/1.1[0m" 500 -
+2026-05-28 23:21:55,324 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:21:55] "POST /api/ml/detect HTTP/1.1" 200 -
+2026-05-28 23:21:55,912 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:21:55] "POST /api/ml/detect HTTP/1.1" 200 -
+2026-05-28 23:21:56,564 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:21:56] "POST /api/ml/detect HTTP/1.1" 200 -
+2026-05-28 23:22:06,332 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:22:06] "POST /api/ml/run HTTP/1.1" 200 -
+2026-05-28 23:22:27,444 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:22:27] "GET /api/history/ HTTP/1.1" 200 -
+2026-05-28 23:23:15,549 [INFO] werkzeug: 127.0.0.1 - - [28/May/2026 23:23:15] "GET /api/history/ HTTP/1.1" 200 -

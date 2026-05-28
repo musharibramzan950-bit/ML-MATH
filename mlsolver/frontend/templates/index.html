@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>ML Solver — Intelligent Machine Learning Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/css/main.css"/>
+</head>
+<body>
+
+<!-- BACKGROUND GRID -->
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-brand">
+    <span class="nav-icon">⬡</span>
+    <span class="nav-title">ML<span class="accent">Solver</span></span>
+  </div>
+  <div class="nav-links">
+    <button class="nav-btn active" data-tab="solver">Studio</button>
+    <button class="nav-btn" data-tab="history">History</button>
+    <button class="nav-btn" data-tab="about">About</button>
+  </div>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+      <span class="theme-icon">◑</span>
+    </button>
+    <a href="mailto:musharibramzan950@gmail.com" class="btn-hire">Hire Me</a>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="main-container">
+
+  <!-- SOLVER TAB -->
+  <section id="tab-solver" class="tab-section active">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-badge">✦ AI-Powered Machine Learning Studio</div>
+      <h1 class="hero-title">Solve any ML problem<br/><span class="gradient-text">in seconds.</span></h1>
+      <p class="hero-sub">Enter data, pick an algorithm, get predictions, charts, and explanations — instantly.</p>
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="solver-grid">
+
+      <!-- LEFT: INPUT PANEL -->
+      <div class="panel input-panel">
+        <div class="panel-header">
+          <span class="panel-icon">⌨</span>
+          <h3>Input Data</h3>
+          <div class="mode-switch">
+            <button class="mode-btn active" data-mode="text">Text</button>
+            <button class="mode-btn" data-mode="file">File</button>
+          </div>
+        </div>
+
+        <!-- TEXT INPUT MODE -->
+        <div id="input-text-mode">
+          <div class="field-group">
+            <label class="field-label">Data / Equation</label>
+            <textarea id="inputData" class="data-input" placeholder="Enter numbers, CSV data, or an equation...
+Examples:
+• 1,2 2,4 3,6 4,8 5,10
+• 1.2, 3.4, 5.6, 7.8, 9.0
+• 1,0 2,0 3,1 4,1 5,1 6,1
+
+Each row = one sample. Last column = target (y)." rows="8"></textarea>
+            <div class="input-actions">
+              <button class="icon-btn" id="clearInput" title="Clear">✕</button>
+              <button class="icon-btn" id="sampleBtn" title="Load sample">⚡</button>
+              <span class="char-count" id="charCount">0 chars</span>
+            </div>
+          </div>
+
+          <!-- Auto-detect -->
+          <div class="detect-bar" id="detectBar" style="display:none">
+            <span class="detect-label">💡 Suggested:</span>
+            <div class="detect-chips" id="detectChips"></div>
+          </div>
+        </div>
+
+        <!-- FILE UPLOAD MODE -->
+        <div id="input-file-mode" style="display:none">
+          <div class="upload-zone" id="uploadZone">
+            <div class="upload-icon">📂</div>
+            <p class="upload-text">Drop CSV file here or <span class="upload-link">browse</span></p>
+            <p class="upload-sub">Last column treated as target variable</p>
+            <input type="file" id="fileInput" accept=".csv" hidden/>
+          </div>
+          <div class="file-info" id="fileInfo" style="display:none"></div>
+        </div>
+
+        <!-- ALGORITHM SELECTOR -->
+        <div class="field-group mt">
+          <label class="field-label">Algorithm</label>
+          <div class="algo-select-wrapper">
+            <select id="algoSelect" class="algo-select">
+              <option value="">— Select Algorithm —</option>
+              <optgroup label="Regression">
+                <option value="linear_regression">Linear Regression</option>
+                <option value="polynomial_regression">Polynomial Regression</option>
+              </optgroup>
+              <optgroup label="Classification">
+                <option value="logistic_regression">Logistic Regression</option>
+                <option value="decision_tree">Decision Tree</option>
+                <option value="knn">K-Nearest Neighbors</option>
+                <option value="svm">Support Vector Machine</option>
+                <option value="naive_bayes">Naive Bayes</option>
+              </optgroup>
+              <optgroup label="Ensemble">
+                <option value="random_forest">Random Forest</option>
+              </optgroup>
+              <optgroup label="Clustering">
+                <option value="kmeans">K-Means Clustering</option>
+              </optgroup>
+              <optgroup label="Analysis">
+                <option value="statistics">Statistics Analysis</option>
+              </optgroup>
+              <optgroup label="Deep Learning">
+                <option value="neural_network">Neural Network</option>
+              </optgroup>
+            </select>
+          </div>
+          <div id="algoDesc" class="algo-desc"></div>
+        </div>
+
+        <!-- EXTRA PARAMS -->
+        <div id="extraParams" class="extra-params" style="display:none">
+          <div id="degreeParam" class="param-row" style="display:none">
+            <label class="field-label">Polynomial Degree</label>
+            <input type="number" id="degreeInput" class="param-input" min="2" max="10" value="2"/>
+          </div>
+          <div id="kParam" class="param-row" style="display:none">
+            <label class="field-label">K Value</label>
+            <input type="number" id="kInput" class="param-input" min="2" max="20" value="3"/>
+          </div>
+          <div id="taskParam" class="param-row" style="display:none">
+            <label class="field-label">Task Type</label>
+            <select id="taskSelect" class="param-input">
+              <option value="classification">Classification</option>
+              <option value="regression">Regression</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- MODE (Beginner/Advanced) -->
+        <div class="beginner-switch">
+          <span class="field-label">Mode</span>
+          <div class="toggle-group">
+            <button class="toggle-opt active" data-level="beginner">Beginner</button>
+            <button class="toggle-opt" data-level="advanced">Advanced</button>
+          </div>
+        </div>
+
+        <!-- RUN BUTTON -->
+        <button class="run-btn" id="runBtn">
+          <span class="run-icon">▶</span>
+          <span>Run Analysis</span>
+          <div class="btn-shimmer"></div>
+        </button>
+
+        <div class="error-box" id="errorBox" style="display:none"></div>
+      </div>
+
+      <!-- RIGHT: RESULTS PANEL -->
+      <div class="panel results-panel" id="resultsPanel">
+        <!-- PLACEHOLDER -->
+        <div class="results-placeholder" id="resultsPlaceholder">
+          <div class="placeholder-art">
+            <div class="orb orb1"></div>
+            <div class="orb orb2"></div>
+            <div class="orb orb3"></div>
+          </div>
+          <p class="placeholder-text">Results will appear here</p>
+          <p class="placeholder-sub">Enter data and run an algorithm</p>
+        </div>
+
+        <!-- LOADING -->
+        <div class="loading-state" id="loadingState" style="display:none">
+          <div class="loader-ring"></div>
+          <p class="loader-text">Running analysis<span class="dots">...</span></p>
+        </div>
+
+        <!-- RESULTS CONTENT -->
+        <div id="resultsContent" style="display:none">
+          <div class="results-header">
+            <div>
+              <h3 id="resultAlgoName" class="result-algo"></h3>
+              <p id="resultExplain" class="result-explain"></p>
+            </div>
+            <div class="result-actions">
+              <button class="icon-btn" id="exportBtn" title="Export JSON">↓ Export</button>
+              <button class="icon-btn" id="copyBtn" title="Copy metrics">⎘ Copy</button>
+            </div>
+          </div>
+
+          <!-- METRICS GRID -->
+          <div class="metrics-grid" id="metricsGrid"></div>
+
+          <!-- CHARTS -->
+          <div class="charts-section" id="chartsSection"></div>
+
+          <!-- EQUATION -->
+          <div id="equationBox" class="equation-box" style="display:none">
+            <span class="eq-label">Equation</span>
+            <code id="equationText" class="eq-code"></code>
+          </div>
+
+          <!-- ADVANCED DETAILS -->
+          <div id="advancedDetails" class="advanced-section" style="display:none">
+            <h4 class="section-title">Detailed Report</h4>
+            <pre id="advancedPre" class="advanced-pre"></pre>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HISTORY TAB -->
+  <section id="tab-history" class="tab-section">
+    <div class="section-header">
+      <h2 class="section-title-lg">Analysis History</h2>
+      <div class="section-actions">
+        <button class="btn-ghost" id="refreshHistory">⟳ Refresh</button>
+        <button class="btn-danger" id="clearHistoryBtn">✕ Clear All</button>
+      </div>
+    </div>
+    <div class="history-list" id="historyList">
+      <div class="history-empty">No history yet. Run an analysis first.</div>
+    </div>
+  </section>
+
+  <!-- ABOUT TAB -->
+  <section id="tab-about" class="tab-section">
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-icon">⬡</div>
+        <h2 class="about-title">ML Solver Studio</h2>
+        <p class="about-desc">A production-grade machine learning web application supporting 11 algorithms with real-time visualization, statistical analysis, and model explanations. Built with Flask, scikit-learn, and a custom neural network engine.</p>
+        <div class="algo-tags">
+          <span class="tag">Linear Regression</span>
+          <span class="tag">Polynomial Regression</span>
+          <span class="tag">Logistic Regression</span>
+          <span class="tag">Decision Tree</span>
+          <span class="tag">Random Forest</span>
+          <span class="tag">KNN</span>
+          <span class="tag">SVM</span>
+          <span class="tag">K-Means</span>
+          <span class="tag">Naive Bayes</span>
+          <span class="tag">Neural Network</span>
+          <span class="tag">Statistics</span>
+        </div>
+      </div>
+
+      <div class="about-card contact-card">
+        <div class="about-icon">✦</div>
+        <h3>Built by Musharib Ramzan</h3>
+        <p class="about-desc">ML Engineer & Full-Stack Developer — Class XI student building production-grade projects.</p>
+        <div class="contact-links">
+          <a href="mailto:musharibramzan950@gmail.com" class="contact-btn email">✉ Email Me</a>
+          <a href="https://github.com/musharibramzan950-bit" target="_blank" class="contact-btn github">⌥ GitHub</a>
+          <a href="https://linkedin.com/in/musharib-ramzan" target="_blank" class="contact-btn linkedin">in LinkedIn</a>
+          <a href="https://linktr.ee/Musharib_" target="_blank" class="contact-btn linktree">⬡ Linktree</a>
+          <a href="https://instagram.com/___musharib____" target="_blank" class="contact-btn insta">◎ Instagram</a>
+        </div>
+        <div class="sponsor-row">
+          <a href="mailto:musharibramzan950@gmail.com?subject=Sponsorship" class="btn-sponsor">💜 Sponsor This Project</a>
+          <a href="mailto:musharibramzan950@gmail.com?subject=Hire Me" class="btn-hire-lg">🚀 Hire Me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-brand">⬡ ML<span class="accent">Solver</span></span>
+    <span class="footer-copy">Built by <a href="mailto:musharibramzan950@gmail.com">Musharib Ramzan</a></span>
+    <div class="footer-links">
+      <a href="mailto:musharibramzan950@gmail.com?subject=Hire Me" class="footer-btn">Hire Me</a>
+      <a href="mailto:musharibramzan950@gmail.com" class="footer-btn">Contact</a>
+      <a href="mailto:musharibramzan950@gmail.com?subject=Sponsorship" class="footer-btn">Sponsor</a>
+      <a href="https://github.com/musharibramzan950-bit" target="_blank" class="footer-btn">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/static/js/main.js"></script>
+</body>
+</html>
